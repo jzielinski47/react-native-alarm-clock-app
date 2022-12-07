@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StyleSheet, Text, View, StatusBar, useColorScheme } from 'react-native';
 
 import Main from './screens/Main';
+import List from './screens/List';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,7 +16,7 @@ const App = () => {
     <NavigationContainer >
       <Stack.Navigator initialRouteName="main" screenOptions={{ navigationBarColor: theme.colors.white }}>
         <Stack.Screen name="main" component={Main} options={{ headerShown: false }} />
-        <Stack.Screen name="list" component={Main} options={{ title: 'DCIM Gallery', headerStyle: { backgroundColor: '#1f1f1f' }, headerTintColor: '#fff', }} />
+        <Stack.Screen name="list" component={List} options={{ title: 'DCIM Gallery', headerStyle: { backgroundColor: '#1f1f1f' }, headerTintColor: '#fff', }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

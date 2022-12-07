@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, StatusBar, ActivityIndicator, TouchableOpacity, ImageBackground, Image, Dimensions } from 'react-native';
-import React from 'react'
 import CustomButton from '../components/CustomButton';
+import React from 'react'
 
 const screen = { width: Dimensions.get("window").width, height: Dimensions.get("window").height }
 
@@ -14,7 +14,7 @@ const Main = ({ navigation }) => {
                     <Image style={theme.illustration} source={{ uri: 'https://i.imgur.com/DbIYmzl.png' }} />
                     <Text style={theme.title}>Alarm Clock App</Text>
                     <Text style={theme.text}>start managing your time{"\n"}with alarm clocks</Text>
-                    <CustomButton title={'Get started'} onPress={() => console.log('aaa')} />
+                    <CustomButton title={'Get started'} onPress={() => navigation.navigate('list')} />
                 </View>
                 <StatusBar style="auto" />
             </View>
