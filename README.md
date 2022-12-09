@@ -1,3 +1,3 @@
 # react-native-alarm-clock-app
 
-**Alarm Clock App** manages multiple alarm clocks and handles MySql database connection. 
+**Alarm Clock App** manages handles alarm clock management and MySql database connection. 
