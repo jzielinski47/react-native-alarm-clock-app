@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, Dimensions } from 'react-native'
 import CustomSquareButton2 from '../components/CustomSquareButton2';
 import React from 'react'
 
-const AddAlarm = ({ navigation }) => {
+const AlarmCreator = ({ navigation }) => {
     return (
         <View style={theme.container}>
             <Text>AddAlarm</Text>
@@ -16,7 +16,7 @@ const AddAlarm = ({ navigation }) => {
     )
 }
 
-export default AddAlarm
+export default AlarmCreator
 
 const theme = StyleSheet.create({
     container: { flex: 1, backgroundColor: 'white', justifyContent: 'center', alignItems: 'center' },

@@ -10,7 +10,7 @@ const List = ({ navigation }) => {
         <View style={theme.container}>
             <ScrollContentContainer styles={{ flexGrow: 1, width: '100%', height: '100%' }} />
             <View style={theme.button} >
-                <CustomSquareButton title={"Add alarm clock"} onPress={() => navigation.navigate('add')} />
+                <CustomSquareButton title={"Add alarm clock"} onPress={() => navigation.navigate('creator')} />
             </View >
         </View>
     )

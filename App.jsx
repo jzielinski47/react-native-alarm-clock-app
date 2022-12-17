@@ -5,7 +5,7 @@ import { StyleSheet, Text, View, StatusBar, useColorScheme } from 'react-native'
 
 import Main from './screens/Main';
 import List from './screens/List';
-import AddAlarm from './screens/AddAlarm';
+import AlarmCreator from './screens/AlarmCreator';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,18 +14,17 @@ const App = () => {
   const isDarkMode = useColorScheme() === 'dark'
 
   return (
-    <NavigationContainer >
-
-      <Stack.Navigator initialRouteName="main" screenOptions={{ navigationBarColor: theme.colors.white, textAlign: 'center' }}>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="main" screenOptions={{ navigationBarColor: themes.colors.white, textAlign: 'center' }}>
         <Stack.Screen name="main" component={Main} options={{ headerShown: false }} />
         <Stack.Screen name="list" component={List} options={{ title: 'Alarm clock list', headerStyle: { backgroundColor: '#1f1f1f' }, headerTintColor: '#fff', }} />
-        <Stack.Screen name="add" component={AddAlarm} options={{ title: 'Add new alarm', headerStyle: { backgroundColor: '#1f1f1f' }, headerTintColor: '#fff', }} />
+        <Stack.Screen name="creator" component={AlarmCreator} options={{ title: 'Add new alarm', headerStyle: { backgroundColor: '#1f1f1f' }, headerTintColor: '#fff', }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
-const theme = StyleSheet.create({
+const themes = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#121212' },
   colors: { black: '#000', white: 'white' }
 });
