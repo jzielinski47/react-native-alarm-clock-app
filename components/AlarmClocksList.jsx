@@ -5,12 +5,12 @@ import AlarmClock from "./AlarmClock"
 const AlarmClocksList = (props) => {
 
     const [alarms, setAlarms] = useState([
-        { id: 0, hour: 22, minutes: 0, active: false }
+        { id: 0, hour: "22", minutes: "00", active: false }
     ])
 
     return (
         <View>
-            {alarms.map(alarm => <AlarmClock details={alarm} />)}
+            {alarms.map(alarm => <AlarmClock details={alarm} key={alarm.id} />)}
         </View>
     )
 }
