@@ -2,15 +2,10 @@ import { useState } from "react"
 import { View, Text } from "react-native"
 import AlarmClock from "./AlarmClock"
 
-const AlarmClocksList = (props) => {
-
-    const [alarms, setAlarms] = useState([
-        { id: 0, hour: "22", minutes: "00", active: false }
-    ])
-
+const AlarmClocksList = ({ alarms }) => {
     return (
         <View>
-            {alarms.map(alarm => <AlarmClock details={alarm} key={alarm.id} />)}
+            {alarms.map(alarm => <AlarmClock key={alarm.id} id={alarm.id} hour={alarm.hour} minutes={alarm.minutes} active={alarm.active} />)}
         </View>
     )
 }

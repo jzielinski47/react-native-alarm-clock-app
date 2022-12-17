@@ -1,22 +1,28 @@
 import { View, Text, Switch, Image, StyleSheet, Animated } from 'react-native'
-import React from 'react'
+import { React, useState } from 'react'
 
-const AlarmClock = (props) => {
+const AlarmClock = ({ id, hour, minutes, active }) => {
 
-  const { id, hour, minutes, active } = props.details;
+  const [isActive, setIsActive] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const height = new Animated.Value(200);
+
+  let currentHeight = 0
+
+  const toggle = () => {
+    currentHeight = expanded ? 400 : 200;
+    Animated.spring(height, { toValue: currentHeight, useNativeDriver: false }).start();
+    setExpanded(!expanded);
+  }
 
   return (
-    <View style={theme.container}>
+    <View style={[theme.container]}>
       <View style={theme.section}>
-        <Text style={[theme.hour, { marginRight: 40 }]}>{`${hour}:${minutes}`}</Text>
-        <Switch style={[theme.switch, { marginLeft: 40 }]} />
+        <Text style={theme.title}>{`${hour}:${minutes}`}</Text>
+        <Switch style={theme.switch} />
       </View>
       <View style={theme.section}>
-        <Image source={require('../assets/remove-black.png')} style={[theme.image, { marginRight: 80 }]} />
-        <Image source={require('../assets/remove-black.png')} style={[theme.image, { marginLeft: 80 }]} />
-      </View>
-      <View style={theme.section}>
-
+        <Image source={require('../assets/remove-black.png')} />
       </View>
     </View>
   )
@@ -25,9 +31,7 @@ const AlarmClock = (props) => {
 export default AlarmClock
 
 const theme = StyleSheet.create({
-  container: { flex: 1, width: '100%', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', margin: 10 },
-  section: { flex: 1, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', paddingVertical: 10, paddingHorizontal: 30 },
-  hour: { fontSize: 32, textAlign: 'center', fontWeight: 'bold' },
-  switch: {},
-  image: {}
+  container: { flex: 1, flexDirection: 'column', marginHorizontal: 10, marginTop: 5, paddingBottom: 10, padding: 5, borderBottomColor: '#e8e8e8', borderBottomWidth: 2 },
+  section: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginVertical: 2 },
+  title: { fontSize: 32, textAlign: 'center' },
 })
