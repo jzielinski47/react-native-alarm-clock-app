@@ -1,6 +1,6 @@
 import { View, Text, ScrollView } from 'react-native'
 import React from 'react'
-import AlarmClocksList from './AlarmClocksList'
+import AlarmClocksList from '../AlarmClocksList'
 
 const ScrollContentContainer = (props) => {
     return (

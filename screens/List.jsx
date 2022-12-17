@@ -1,11 +1,9 @@
 import { View, Text, ScrollView, StyleSheet, Button, SafeAreaView, Dimensions } from 'react-native'
 import React from 'react'
-import CustomSquareButton from '../components/CustomSquareButton';
-import ScrollContentContainer from '../components/ScrollContentContainer';
+import CustomSquareButton from '../components/buttons/CustomSquareButton';
+import ScrollContentContainer from '../components/containers/ScrollContentContainer';
 
 const List = ({ navigation }) => {
-    console.log(Dimensions.get('window').width)
-
     return (
         <View style={theme.container}>
             <ScrollContentContainer styles={{ flexGrow: 1, width: '100%', height: '100%' }} />

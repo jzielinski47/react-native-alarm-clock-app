@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, StatusBar, ActivityIndicator, TouchableOpacity, ImageBackground, Image, Dimensions } from 'react-native';
-import CustomRoundedButton from '../components/CustomRoundedButton';
+import CustomRoundedButton from '../components/buttons/CustomRoundedButton';
 import { useFonts } from 'expo-font';
 import React from 'react'
 
@@ -22,7 +22,7 @@ const Main = ({ navigation }) => {
                     <Text style={[theme.title, { fontFamily: 'opensansBold' }]}>Alarm Clock App</Text>
                     <Text style={[theme.text, { fontFamily: 'opensansRegular' }]}>manage your time with alarm clocks</Text>
                     <CustomRoundedButton title={'Get started'} onPress={() => navigation.navigate('list')} />
-                </View> 
+                </View>
                 <StatusBar style="auto" />
             </View>
         </>
