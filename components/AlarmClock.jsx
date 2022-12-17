@@ -22,7 +22,7 @@ const AlarmClock = ({ id, hour, minutes, active }) => {
         <Switch style={theme.switch} />
       </View>
       <View style={theme.section}>
-        <Image source={require('../assets/remove-black.png')} />
+        <Image style={theme.image} source={require('../assets/remove-black.png')} />
       </View>
     </View>
   )
@@ -34,4 +34,5 @@ const theme = StyleSheet.create({
   container: { flex: 1, flexDirection: 'column', marginHorizontal: 10, marginTop: 5, paddingBottom: 10, padding: 5, borderBottomColor: '#e8e8e8', borderBottomWidth: 2 },
   section: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginVertical: 2 },
   title: { fontSize: 32, textAlign: 'center' },
+  image: { width: 20, height: 20 }
 })
