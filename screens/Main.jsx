@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, StatusBar, ActivityIndicator, TouchableOpacity, ImageBackground, Image, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, ActivityIndicator, TouchableOpacity, ImageBackground, Image, Dimensions, TouchableNativeFeedback } from 'react-native';
 import CustomRoundedButton from '../components/buttons/CustomRoundedButton';
 import { useFonts } from 'expo-font';
 import React from 'react'
@@ -13,7 +13,10 @@ const Main = ({ navigation }) => {
     if (!fontLoaded) { return null }
 
     return (
-        <>
+        <TouchableNativeFeedback
+            background={TouchableNativeFeedback.Ripple('#e8e8e8', true)}
+            onPress={() => navigation.navigate('list')}
+        >
             <View style={theme.container}>
                 <Text style={[theme.lettermark, { top: 70 }]}>SQLITE APP</Text>
                 <Text style={[theme.lettermark, { bottom: 85 }]}>by Jakub Zielinski</Text>
@@ -25,7 +28,7 @@ const Main = ({ navigation }) => {
                 </View>
                 <StatusBar style="auto" />
             </View>
-        </>
+        </TouchableNativeFeedback>
     )
 }
 
