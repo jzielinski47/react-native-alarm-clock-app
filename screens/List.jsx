@@ -20,6 +20,8 @@ const List = ({ navigation }) => {
         });
     }, []);
 
+    
+
     useEffect(() => console.log(alarms), [alarms])
 
     const deleteAlarm = (id) => {

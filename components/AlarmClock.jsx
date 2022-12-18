@@ -15,6 +15,8 @@ const AlarmClock = ({ id, hour, minute, active, remove }) => {
   const [days, setDays] = useState([{ id: 0, name: 'Monday' }, { id: 1, name: 'Tuesday' }, { id: 2, name: 'Wednesday' }, { id: 3, name: 'Thursday' }, { id: 4, name: 'Friday' }, { id: 5, name: 'Saturday' }, { id: 6, name: 'Sunday' }]);
   const [selectedDays, setSelectedDays] = useState([]);
 
+  const [isWatching, setIsWatching] = useState(false)
+
   const selectDaySelector = (id, name) => {
     setSelectedDays(prevState => [...prevState, { id: id, name: name }])
   }
@@ -24,6 +26,26 @@ const AlarmClock = ({ id, hour, minute, active, remove }) => {
   }
 
   useEffect(() => console.log(selectedDays), [selectedDays])
+
+  useEffect(() => {
+
+    let watch;
+
+    if (isActive && !isWatching) {
+      setIsWatching(true);
+      watch = setInterval(() => {
+        const date = new Date()
+        if (date.getHours() == hour && date.getMinutes() == minute) {
+          isActive ? Vibration.vibrate() : clearInterval(watch)
+        }
+      }, 1000)
+
+    } else {
+      setIsWatching(false)
+      clearInterval(watch)
+    }
+
+  }, [isActive])
 
   const toggle = () => !isExpanded ? expand() : roll();
 
