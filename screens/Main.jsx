@@ -1,34 +1,35 @@
 import { StyleSheet, Text, View, StatusBar, ActivityIndicator, TouchableOpacity, ImageBackground, Image, Dimensions, TouchableNativeFeedback } from 'react-native';
 import CustomRoundedButton from '../components/buttons/CustomRoundedButton';
 import { useFonts } from 'expo-font';
-import React from 'react'
+import React, { useEffect } from 'react'
+import Database from "../utils/Database";
 
 const screen = { width: Dimensions.get("window").width, height: Dimensions.get("window").height }
 const scale = 1.5
 
 const Main = ({ navigation }) => {
 
-    const [fontLoaded] = useFonts({ opensansRegular: require('../assets/fonts/OpenSans-Regular.ttf'), opensansBold: require('../assets/fonts/OpenSans-Bold.ttf'), })
+    useEffect(() => Database.createTable(), [])
 
+    const [fontLoaded] = useFonts({ opensansRegular: require('../assets/fonts/OpenSans-Regular.ttf'), opensansBold: require('../assets/fonts/OpenSans-Bold.ttf'), })
     if (!fontLoaded) { return null }
 
+
     return (
-        <TouchableNativeFeedback
-            background={TouchableNativeFeedback.Ripple('#e8e8e8', true)}
-            onPress={() => navigation.navigate('list')}
-        >
-            <View style={theme.container}>
-                <Text style={[theme.lettermark, { top: 70 }]}>SQLITE APP</Text>
-                <Text style={[theme.lettermark, { bottom: 85 }]}>by Jakub Zielinski</Text>
-                <View style={theme.content} >
-                    <Image style={theme.illustration} source={require('../assets/illustration.png')} />
-                    <Text style={[theme.title, { fontFamily: 'opensansBold' }]}>Alarm Clock App</Text>
-                    <Text style={[theme.text, { fontFamily: 'opensansRegular' }]}>manage your time with alarm clocks</Text>
-                    <CustomRoundedButton title={'Get started'} onPress={() => navigation.navigate('list')} />
-                </View>
-                <StatusBar style="auto" />
+
+        <View style={theme.container}>
+            <Text style={[theme.lettermark, { top: 70 }]}>SQLITE APP</Text>
+            <Text style={[theme.lettermark, { bottom: 85 }]}>by Jakub Zielinski</Text>
+
+            <View style={theme.content} >
+                <Image style={theme.illustration} source={require('../assets/illustration.png')} />
+                <Text style={[theme.title, { fontFamily: 'opensansBold' }]}>Alarm Clock App</Text>
+                <Text style={[theme.text, { fontFamily: 'opensansRegular' }]}>manage your time with alarm clocks</Text>
+                <CustomRoundedButton title={'Get started'} onPress={() => navigation.navigate('list')} />
             </View>
-        </TouchableNativeFeedback>
+            <StatusBar style="auto" />
+        </View>
+
     )
 }
 

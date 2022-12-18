@@ -1,4 +1,4 @@
-import { View, Text, Switch, Image, StyleSheet, Animated } from 'react-native'
+import { View, Text, Switch, Image, StyleSheet, Animated, TouchableNativeFeedback } from 'react-native'
 import { React, useState } from 'react'
 
 const AlarmClock = ({ id, hour, minutes, active }) => {
@@ -15,16 +15,20 @@ const AlarmClock = ({ id, hour, minutes, active }) => {
     setExpanded(!expanded);
   }
 
-  return (
-    <View style={[theme.container]}>
-      <View style={theme.section}>
-        <Text style={theme.title}>{`${hour}:${minutes}`}</Text>
-        <Switch style={theme.switch} />
-      </View>
-      <View style={theme.section}>
-        <Image style={theme.image} source={require('../assets/remove-black.png')} />
-      </View>
-    </View>
+  return (    
+      <View style={[theme.container]}>
+        <View style={theme.section}>
+          <Text style={theme.title}>{`${hour}:${minutes}`}</Text>
+          <Switch style={theme.switch} />
+        </View>
+        <View style={theme.section}>
+          <Image style={theme.image} source={require('../assets/remove-black.png')} />
+          <Image style={theme.image} source={require('../assets/remove-black.png')} />
+        </View>
+        <View style={theme.section}>
+          <Text>Monday</Text>
+        </View>
+      </View>    
   )
 }
 
