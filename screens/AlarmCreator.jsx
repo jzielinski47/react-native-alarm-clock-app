@@ -9,7 +9,7 @@ const AlarmCreator = ({ route, navigation }) => {
         const newAlarm = { id: 0, hour: '00', minute: '00', active: false }
         navigation.goBack();
         Database.add(newAlarm.hour, newAlarm.minute, newAlarm.active ? 1 : 0)
-        console.log('added new alarm')
+        console.log(`added a new alarm at ${newAlarm.hour}:${newAlarm.minute}`)
     }
 
     return (

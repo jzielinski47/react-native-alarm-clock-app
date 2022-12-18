@@ -1,28 +1,48 @@
-import { View, Text, Switch, Image, StyleSheet, Animated, TouchableNativeFeedback, TouchableOpacity } from 'react-native'
-import { React, useState } from 'react'
+import { View, Text, Switch, Image, StyleSheet, Animated, TouchableNativeFeedback, TouchableOpacity, Dimensions } from 'react-native'
+import { React, useState, useEffect, useRef } from 'react'
+import { formatNumber } from '../api/Utils';
 
 const AlarmClock = ({ id, hour, minute, active, remove }) => {
 
   const [isActive, setIsActive] = useState(false);
-  const [expanded, setExpanded] = useState(false);
-  const height = new Animated.Value(200);
+  const [isExpanded, setIsExpanded] = useState(false);
 
-  let currentHeight = 0
+  const screenHeight = Dimensions.get("window").height;
+  const expansionHeight = useRef(new Animated.Value(screenHeight / 8)).current;
 
-  const toggle = () => {
-    currentHeight = expanded ? 400 : 200;
-    Animated.spring(height, { toValue: currentHeight, useNativeDriver: false }).start();
-    setExpanded(!expanded);
-    console.log(expanded)
+  const days = [
+    { id: 0, name: 'Monday' },
+    { id: 1, name: 'Tuesday' },
+    { id: 2, name: 'Wednesday' },
+    { id: 3, name: 'Thursday' },
+    { id: 4, name: 'Friday' },
+    { id: 5, name: 'Saturday' },
+    { id: 6, name: 'Sunday' },
+  ]
+
+  const toggle = () => !isExpanded ? expand() : roll();
+
+  const expand = () => {
+    Animated.timing(expansionHeight, {
+      toValue: screenHeight / 6,
+      duration: 800,
+      useNativeDriver: false,
+    }).start();
+    setTimeout(() => setIsExpanded(!isExpanded), 400)
   }
 
-  const formatNumber = (num) => {
-    if (num.length < 2) return `0${num}`
-    else return num
+  const roll = () => {
+    setIsExpanded(!isExpanded);
+    Animated.timing(expansionHeight, {
+      toValue: screenHeight / 8,
+      duration: 800,
+      useNativeDriver: false,
+    }).start();
+    setTimeout(() => setIsExpanded(!isExpanded), 400)
   }
 
   return (
-    <View style={[theme.container]}>
+    <Animated.View style={[theme.container, { height: expansionHeight }]}>
       <View style={theme.section}>
         <Text style={theme.title}>{`${formatNumber(hour)}:${formatNumber(minute)}`}</Text>
         <Switch style={theme.switch} />
@@ -32,13 +52,11 @@ const AlarmClock = ({ id, hour, minute, active, remove }) => {
           <Image style={theme.image} source={require('../assets/remove-black.png')} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => toggle()} >
-          <Image style={theme.image} source={require('../assets/remove-black.png')} />
+          <Image style={theme.image} source={isExpanded ? require('../assets/expand-button-up.png') : require('../assets/expand-button-down.png')} />
         </TouchableOpacity>
       </View>
-      <View style={theme.section}>
-        <Text>Monday</Text>
-      </View>
-    </View>
+      {isExpanded ? <Text style={{ marginVertical: 10 }}>{days.map(day => day.name.substring(0, 3) + ' ')}</Text> : null}
+    </Animated.View>
   )
 }
 
