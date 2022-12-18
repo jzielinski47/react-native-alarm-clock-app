@@ -1,16 +1,26 @@
 import { View, Text, ScrollView, StyleSheet, Button, SafeAreaView, Dimensions } from 'react-native'
 import CustomSquareButton from '../components/buttons/CustomSquareButton';
 import AlarmClocksList from '../components/AlarmClocksList';
-import { React, useState } from 'react'
+import { React, useEffect, useState } from 'react'
+import { Database } from "../api/Database";
 
 const List = ({ navigation }) => {
 
-    const [alarms, setAlarms] = useState([
-        { id: 0, hour: '00', minutes: '00', active: false },
-        { id: 1, hour: '00', minutes: '00', active: false },
-        { id: 2, hour: '00', minutes: '00', active: false },
-        { id: 3, hour: '00', minutes: '00', active: false },
-    ])
+    const [alarms, setAlarms] = useState([])
+
+    useEffect(() => {
+        navigation.addListener('focus', () => {
+            setAlarms([])
+            Database.getAll().then((all) => {
+                console.log(JSON.parse(all));
+
+                const storedAlarms = JSON.parse(all)
+                storedAlarms.rows._array.forEach(alarm => setAlarms(prevState => [...prevState, alarm]))
+            });
+        });
+    }, []);
+
+    useEffect(() => console.log(alarms), [alarms])
 
     return (
         <View style={theme.container}>

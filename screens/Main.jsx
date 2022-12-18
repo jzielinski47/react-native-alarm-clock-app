@@ -2,14 +2,11 @@ import { StyleSheet, Text, View, StatusBar, ActivityIndicator, TouchableOpacity,
 import CustomRoundedButton from '../components/buttons/CustomRoundedButton';
 import { useFonts } from 'expo-font';
 import React, { useEffect } from 'react'
-import Database from "../utils/Database";
 
 const screen = { width: Dimensions.get("window").width, height: Dimensions.get("window").height }
 const scale = 1.5
 
 const Main = ({ navigation }) => {
-
-    useEffect(() => { Database.createTable(); console.log('created database') }, [])
 
     const [fontLoaded] = useFonts({ opensansRegular: require('../assets/fonts/OpenSans-Regular.ttf'), opensansBold: require('../assets/fonts/OpenSans-Bold.ttf'), })
     if (!fontLoaded) { return null }

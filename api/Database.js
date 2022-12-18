@@ -1,7 +1,7 @@
 import * as SQLite from "expo-sqlite";
 const db = SQLite.openDatabase("zielinski_jakub_4i1b.db");
 
-const tableName = 'table'
+const tableName = 'table3'
 
 export class Database {
 
@@ -11,7 +11,7 @@ export class Database {
     static add = (hour, minute, active) => db.transaction(tx => tx.executeSql(`INSERT INTO ${tableName} (hour, minute, active) values (${hour},${minute},${active})`));
 
     static getAll = () => {
-        var query = `SELECT * FROM ${tableName}`;
+        var query = `SELECT * FROM ${tableName};`;
 
         return new Promise((resolve, reject) => db.transaction((tx) => {
             tx.executeSql(query, [], (tx, results) => {

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StyleSheet, Text, View, StatusBar, useColorScheme, LogBox } from 'react-native';
@@ -7,10 +7,14 @@ import Main from './screens/Main';
 import List from './screens/List';
 import AlarmCreator from './screens/AlarmCreator';
 
+import { Database } from "./api/Database";
+
 const Stack = createNativeStackNavigator();
 // LogBox.ignoreAllLogs();
 
 const App = () => {
+
+  useEffect(() => { Database.createTable(); console.log('created database') }, [])
 
   const isDarkMode = useColorScheme() === 'dark'
 

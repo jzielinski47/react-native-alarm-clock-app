@@ -5,7 +5,7 @@ import AlarmClock from "./AlarmClock"
 const AlarmClocksList = ({ alarms }) => {
     return (
         <View>
-            {alarms.map(alarm => <AlarmClock key={alarm.id} id={alarm.id} hour={alarm.hour} minutes={alarm.minutes} active={alarm.active} />)}
+            {alarms.map((alarm, i) => <AlarmClock key={alarm.id} id={alarm.id} hour={alarm.hour} minute={alarm.minute} active={alarm.active} />)}
         </View>
     )
 }

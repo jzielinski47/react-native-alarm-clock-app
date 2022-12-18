@@ -1,7 +1,7 @@
-import { View, Text, Switch, Image, StyleSheet, Animated, TouchableNativeFeedback } from 'react-native'
+import { View, Text, Switch, Image, StyleSheet, Animated, TouchableNativeFeedback, TouchableOpacity } from 'react-native'
 import { React, useState } from 'react'
 
-const AlarmClock = ({ id, hour, minutes, active }) => {
+const AlarmClock = ({ id, hour, minute, active }) => {
 
   const [isActive, setIsActive] = useState(false);
   const [expanded, setExpanded] = useState(false);
@@ -13,22 +13,30 @@ const AlarmClock = ({ id, hour, minutes, active }) => {
     currentHeight = expanded ? 400 : 200;
     Animated.spring(height, { toValue: currentHeight, useNativeDriver: false }).start();
     setExpanded(!expanded);
+    console.log(expanded)
   }
 
-  return (    
-      <View style={[theme.container]}>
-        <View style={theme.section}>
-          <Text style={theme.title}>{`${hour}:${minutes}`}</Text>
-          <Switch style={theme.switch} />
-        </View>
-        <View style={theme.section}>
+  const formatNumber = (num) => {
+    if (num.length < 2) return `0${num}`
+    else return num
+  }
+
+  return (
+    <View style={[theme.container]}>
+      <View style={theme.section}>
+        <Text style={theme.title}>{`${formatNumber(hour)}:${formatNumber(minute)}`}</Text>
+        <Switch style={theme.switch} />
+      </View>
+      <View style={theme.section}>
+        <Image style={theme.image} source={require('../assets/remove-black.png')} />
+        <TouchableOpacity onPress={() => toggle()} >
           <Image style={theme.image} source={require('../assets/remove-black.png')} />
-          <Image style={theme.image} source={require('../assets/remove-black.png')} />
-        </View>
-        <View style={theme.section}>
-          <Text>Monday</Text>
-        </View>
-      </View>    
+        </TouchableOpacity>
+      </View>
+      <View style={theme.section}>
+        <Text>Monday</Text>
+      </View>
+    </View>
   )
 }
 

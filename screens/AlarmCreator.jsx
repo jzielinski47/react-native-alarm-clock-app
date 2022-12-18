@@ -1,14 +1,15 @@
 import { View, Text, StyleSheet, Dimensions, TouchableNativeFeedback } from 'react-native'
 import CustomSquareButton2 from '../components/buttons/CustomSquareButton2';
 import React from 'react'
+import { Database } from '../api/Database';
 
 const AlarmCreator = ({ route, navigation }) => {
 
     const addAlarm = () => {
-        const newAlarm = { id: 0, hour: '00', minutes: '00', active: false }
-        navigation.navigate('list');
-        console.log(newAlarm)
-
+        const newAlarm = { id: 0, hour: '00', minute: '00', active: false }
+        navigation.goBack();
+        Database.add("01", newAlarm.minute, newAlarm.active ? 1 : 0)
+        console.log('added new alarm')
     }
 
     return (
