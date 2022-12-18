@@ -7,8 +7,8 @@ import { formatNumber } from '../api/Utils';
 
 const AlarmCreator = ({ route, navigation }) => {
 
-    const [hour, setHour] = useState(0);
-    const [minute, setMinute] = useState(0);
+    const [hour, setHour] = useState(new Date().getHours());
+    const [minute, setMinute] = useState(new Date().getMinutes());
     const [isHoursSelected, setIsHoursSelected] = useState(true)
 
     const addAlarm = () => {

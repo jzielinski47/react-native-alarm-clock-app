@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Vibration } from 'react-native'
 import React, { useEffect, useState } from 'react'
 
 const DaySelector = ({ id, name, selectedArr, selectDaySelector, removeDaySelector }) => {

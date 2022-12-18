@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Vibration } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import CircuralSelectorButton from './buttons/CircuralSelectorButton'
 
@@ -28,6 +28,7 @@ const CircuralTimeSelector = ({ setHour, setMinute, isHoursSelected }) => {
                         width: 50, height: 50, backgroundColor: '#303030'
                     }} onPress={() => {
                         isHoursSelected ? setHour(num) : setMinute(num)
+                        Vibration.vibrate()
                     }} />
 
                 })}
@@ -41,6 +42,7 @@ const CircuralTimeSelector = ({ setHour, setMinute, isHoursSelected }) => {
                             width: 30, height: 30, backgroundColor: '#7d7d7d'
                         }} onPress={() => {
                             isHoursSelected ? setHour(num) : setMinute(num)
+                            Vibration.vibrate()
                         }} />
 
                     })}
@@ -64,7 +66,7 @@ const CircuralTimeSelector = ({ setHour, setMinute, isHoursSelected }) => {
                         num !== lastNumber ? setMinute(num) : setMinute(num + index)
                         setIndex(index < 5 ? index + 1 : 1)
 
-
+                        Vibration.vibrate()
 
                     }} />
 
