@@ -1,6 +1,7 @@
 import { View, Text, Switch, Image, StyleSheet, Animated, TouchableNativeFeedback, TouchableOpacity, Dimensions } from 'react-native'
 import { React, useState, useEffect, useRef } from 'react'
 import { formatNumber } from '../api/Utils';
+import DaySelector from './DaySelector';
 
 const AlarmClock = ({ id, hour, minute, active, remove }) => {
 
@@ -11,13 +12,13 @@ const AlarmClock = ({ id, hour, minute, active, remove }) => {
   const expansionHeight = useRef(new Animated.Value(screenHeight / 8)).current;
 
   const days = [
-    { id: 0, name: 'Monday' },
-    { id: 1, name: 'Tuesday' },
-    { id: 2, name: 'Wednesday' },
-    { id: 3, name: 'Thursday' },
-    { id: 4, name: 'Friday' },
-    { id: 5, name: 'Saturday' },
-    { id: 6, name: 'Sunday' },
+    { id: 0, name: 'Monday', selected: false },
+    { id: 1, name: 'Tuesday', selected: false },
+    { id: 2, name: 'Wednesday', selected: false },
+    { id: 3, name: 'Thursday', selected: false },
+    { id: 4, name: 'Friday', selected: false },
+    { id: 5, name: 'Saturday', selected: false },
+    { id: 6, name: 'Sunday', selected: false },
   ]
 
   const toggle = () => !isExpanded ? expand() : roll();
@@ -41,11 +42,13 @@ const AlarmClock = ({ id, hour, minute, active, remove }) => {
     setTimeout(() => setIsExpanded(!isExpanded), 400)
   }
 
+  const toggleSwitch = () => setIsActive(!isActive)
+
   return (
     <Animated.View style={[theme.container, { height: expansionHeight }]}>
       <View style={theme.section}>
         <Text style={theme.title}>{`${formatNumber(hour)}:${formatNumber(minute)}`}</Text>
-        <Switch style={theme.switch} />
+        <Switch style={theme.switch} trackColor={{ false: "#7d7d7d", true: "#7c7c7c" }} thumbColor={isActive ? "#303030" : "#f4f3f4"} onValueChange={toggleSwitch} value={isActive} />
       </View>
       <View style={theme.section}>
         <TouchableOpacity onPress={() => remove(id)} >
@@ -55,7 +58,7 @@ const AlarmClock = ({ id, hour, minute, active, remove }) => {
           <Image style={theme.image} source={isExpanded ? require('../assets/expand-button-up.png') : require('../assets/expand-button-down.png')} />
         </TouchableOpacity>
       </View>
-      {isExpanded ? <Text style={{ marginVertical: 10 }}>{days.map(day => day.name.substring(0, 3) + ' ')}</Text> : null}
+      {isExpanded ? <Text style={{ marginVertical: 10 }}>{days.map(day => <DaySelector id={day.id} name={day.name.substring(0, 3)} selected={day.selected} />)}</Text> : null}
     </Animated.View>
   )
 }
