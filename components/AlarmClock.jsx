@@ -11,15 +11,18 @@ const AlarmClock = ({ id, hour, minute, active, remove }) => {
   const screenHeight = Dimensions.get("window").height;
   const expansionHeight = useRef(new Animated.Value(screenHeight / 8)).current;
 
-  const days = [
-    { id: 0, name: 'Monday', selected: false },
-    { id: 1, name: 'Tuesday', selected: false },
-    { id: 2, name: 'Wednesday', selected: false },
-    { id: 3, name: 'Thursday', selected: false },
-    { id: 4, name: 'Friday', selected: false },
-    { id: 5, name: 'Saturday', selected: false },
-    { id: 6, name: 'Sunday', selected: false },
-  ]
+  const [days, setDays] = useState([{ id: 0, name: 'Monday' }, { id: 1, name: 'Tuesday' }, { id: 2, name: 'Wednesday' }, { id: 3, name: 'Thursday' }, { id: 4, name: 'Friday' }, { id: 5, name: 'Saturday' }, { id: 6, name: 'Sunday' }]);
+  const [selectedDays, setSelectedDays] = useState([]);
+
+  const selectDaySelector = (id, name) => {
+    setSelectedDays(prevState => [...prevState, { id: id, name: name }])
+  }
+
+  const removeDaySelector = (id, name) => {
+    setSelectedDays(selectedDays.filter(day => day.id !== id))
+  }
+
+  useEffect(() => console.log(selectedDays), [selectedDays])
 
   const toggle = () => !isExpanded ? expand() : roll();
 
@@ -58,7 +61,9 @@ const AlarmClock = ({ id, hour, minute, active, remove }) => {
           <Image style={theme.image} source={isExpanded ? require('../assets/expand-button-up.png') : require('../assets/expand-button-down.png')} />
         </TouchableOpacity>
       </View>
-      {isExpanded ? <Text style={{ marginVertical: 10 }}>{days.map(day => <DaySelector id={day.id} name={day.name.substring(0, 3)} selected={day.selected} />)}</Text> : null}
+      <View style={theme.section}>
+        {isExpanded ? days.map(day => <DaySelector id={day.id} name={day.name.substring(0, 3)} selectedArr={selectedDays} selectDaySelector={selectDaySelector} removeDaySelector={removeDaySelector} />) : null}
+      </View>
     </Animated.View>
   )
 }

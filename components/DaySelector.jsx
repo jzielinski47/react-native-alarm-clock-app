@@ -1,19 +1,27 @@
-import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import React, { useEffect, useState } from 'react'
 
-const DaySelector = ({ id, name, selected }) => {
+const DaySelector = ({ id, name, selectedArr, selectDaySelector, removeDaySelector }) => {
+
+    const [selected, setSelected] = useState(selectedArr.filter(el => el.id === id).length > 0)
+
+    const select = () => {
+        !selected ? selectDaySelector(id, name) : removeDaySelector(id, name);
+        setSelected(!selected)
+    }
+
     return (
-        <View style={selected ? theme.selected : theme.container}>
-            <Text style={selected ? theme.textSelected : theme.text}>DaySelector</Text>
-        </View>
+        <TouchableOpacity style={selected ? theme.selected : theme.container} onPress={() => select()}>
+            <Text style={selected ? theme.textSelected : theme.text}>{name} </Text>
+        </TouchableOpacity>
     )
 }
 
 export default DaySelector
 
 const theme = StyleSheet.create({
-    container: { flex: 1 },
-    selected: { flex: 1, backgroundColor: 'black' },
+    container: { margin: 10 },
+    selected: { margin: 10, backgroundColor: 'black' },
     text: { color: '#000' },
     textSelected: { color: '#fff' },
     image: { width: 20, height: 20 }

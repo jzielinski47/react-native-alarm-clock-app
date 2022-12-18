@@ -12,19 +12,20 @@ const Main = ({ navigation }) => {
     if (!fontLoaded) { return null }
 
     return (
+        <TouchableNativeFeedback background={TouchableNativeFeedback.Ripple('rgba(0,255,255,1)', true)} onPress={() => navigation.navigate('list')}>
+            <View style={theme.container}>
+                <Text style={[theme.lettermark, { top: 70 }]}>SQLITE APP</Text>
+                <Text style={[theme.lettermark, { bottom: 85 }]}>by Jakub Zielinski</Text>
 
-        <View style={theme.container}>
-            <Text style={[theme.lettermark, { top: 70 }]}>SQLITE APP</Text>
-            <Text style={[theme.lettermark, { bottom: 85 }]}>by Jakub Zielinski</Text>
-
-            <View style={theme.content} >
-                <Image style={theme.illustration} source={require('../assets/illustration.png')} />
-                <Text style={[theme.title, { fontFamily: 'opensansBold' }]}>Alarm Clock App</Text>
-                <Text style={[theme.text, { fontFamily: 'opensansRegular' }]}>manage your time with alarm clocks</Text>
-                <CustomRoundedButton title={'Get started'} onPress={() => navigation.navigate('list')} />
+                <View style={theme.content} >
+                    <Image style={theme.illustration} source={require('../assets/illustration.png')} />
+                    <Text style={[theme.title, { fontFamily: 'opensansBold' }]}>Alarm Clock App</Text>
+                    <Text style={[theme.text, { fontFamily: 'opensansRegular' }]}>manage your time with alarm clocks</Text>
+                    <CustomRoundedButton title={'Get started'} onPress={() => navigation.navigate('list')} />
+                </View>
+                <StatusBar style="auto" />
             </View>
-            <StatusBar style="auto" />
-        </View>
+        </TouchableNativeFeedback>
 
     )
 }

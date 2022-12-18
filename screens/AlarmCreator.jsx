@@ -14,6 +14,9 @@ const AlarmCreator = ({ route, navigation }) => {
 
     return (
         <View style={theme.container}>
+
+        
+
             <Text style={theme.text}>
                 Add alarm at 00:00 AM
             </Text>
