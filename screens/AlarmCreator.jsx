@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, Dimensions, TouchableNativeFeedback } from 'react-native'
 import CustomSquareButton2 from '../components/buttons/CustomSquareButton2';
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Database } from '../api/Database';
 import CircuralTimeSelector from '../components/CircuralTimeSelector';
 
@@ -34,7 +34,7 @@ const AlarmCreator = ({ route, navigation }) => {
 export default AlarmCreator
 
 const theme = StyleSheet.create({
-    container: { flex: 1, backgroundColor: 'white', justifyContent: 'center', alignItems: 'center' },
+    container: { flex: 1, backgroundColor: '#f0f2f5', justifyContent: 'center', alignItems: 'center' },
     title: { fontSize: 32, textAlign: 'center' },
     text: { fontSize: 16, marginBottom: 50, textAlign: 'center' },
     button: { position: 'absolute', bottom: 70, left: Dimensions.get('window').width / 2 - 110 },

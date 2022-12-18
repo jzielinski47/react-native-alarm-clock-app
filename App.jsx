@@ -10,7 +10,7 @@ import AlarmCreator from './screens/AlarmCreator';
 import { Database } from "./api/Database";
 
 const Stack = createNativeStackNavigator();
-// LogBox.ignoreAllLogs();
+LogBox.ignoreAllLogs();
 
 const App = () => {
 

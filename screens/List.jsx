@@ -43,7 +43,7 @@ const List = ({ navigation }) => {
 
 const theme = StyleSheet.create({
     safeArea: { flex: 1 },
-    container: { flex: 1, flexDirection: 'column', alignItems: 'center' },
+    container: { flex: 1, flexDirection: 'column', alignItems: 'center', backgroundColor: '#f0f2f5' },
     panel: { flex: 1, justifyContent: 'center', alignItems: 'center' },
     button: { position: 'absolute', bottom: 70, left: Dimensions.get('window').width / 2 - 110 },
     colors: { black: '#000', white: 'white' },

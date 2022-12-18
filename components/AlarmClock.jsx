@@ -28,11 +28,11 @@ const AlarmClock = ({ id, hour, minute, active, remove }) => {
 
   const expand = () => {
     Animated.timing(expansionHeight, {
-      toValue: screenHeight / 6,
+      toValue: screenHeight / 5.5,
       duration: 800,
       useNativeDriver: false,
     }).start();
-    setTimeout(() => setIsExpanded(!isExpanded), 400)
+    setTimeout(() => setIsExpanded(!isExpanded), 500)
   }
 
   const roll = () => {
@@ -42,7 +42,7 @@ const AlarmClock = ({ id, hour, minute, active, remove }) => {
       duration: 800,
       useNativeDriver: false,
     }).start();
-    setTimeout(() => setIsExpanded(!isExpanded), 400)
+    setTimeout(() => setIsExpanded(!isExpanded), 500)
   }
 
   const toggleSwitch = () => setIsActive(!isActive)
@@ -71,7 +71,7 @@ const AlarmClock = ({ id, hour, minute, active, remove }) => {
 export default AlarmClock
 
 const theme = StyleSheet.create({
-  container: { flex: 1, flexDirection: 'column', marginHorizontal: 10, marginTop: 5, paddingBottom: 10, padding: 5, borderBottomColor: '#e8e8e8', borderBottomWidth: 2 },
+  container: { flex: 1, flexDirection: 'column', marginHorziontal: 5, paddingHorizontal: 10, marginBottom: 5, paddingBottom: 10, padding: 5, borderBottomColor: '#e8e8e8', borderBottomWidth: 2, backgroundColor: '#fafafa', borderRadius: 10 },
   section: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginVertical: 2 },
   title: { fontSize: 32, textAlign: 'center' },
   image: { width: 20, height: 20 }
