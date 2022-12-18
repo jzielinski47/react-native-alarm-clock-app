@@ -1,4 +1,2 @@
-export const formatNumber = (num) => {
-    if (num.length < 2) return `0${num}`
-    else return num
-}
+export const formatNumber = (num) => num.toString().length < 2 ? `0${num}` : num
+
