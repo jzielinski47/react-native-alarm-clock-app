@@ -21,18 +21,20 @@ const AlarmCreator = ({ route, navigation }) => {
     return (
         <View style={theme.container}>
 
-            <View style={theme.panel}>
-                <TouchableOpacity onPress={() => setIsHoursSelected(true)}>
-                    <Text style={[theme.title, isHoursSelected ? theme.selected : null]}>{formatNumber(hour)}</Text>
-                </TouchableOpacity>
-                <Text style={theme.title}>:</Text>
-                <TouchableOpacity onPress={() => setIsHoursSelected(false)}>
-                    <Text style={[theme.title, !isHoursSelected ? theme.selected : null]}>{formatNumber(minute)}</Text>
-                </TouchableOpacity>
+            <View style={{ flex: 1, flexDirection: 'column' }}>
+                <View style={[theme.panel, { flexDirection: 'row', backgroundColor: 'red' }]}>
+                    <TouchableOpacity onPress={() => setIsHoursSelected(true)}>
+                        <Text style={[theme.title, isHoursSelected ? theme.selected : null]}>{formatNumber(hour)}</Text>
+                    </TouchableOpacity>
+                    <Text style={theme.title}>:</Text>
+                    <TouchableOpacity onPress={() => setIsHoursSelected(false)}>
+                        <Text style={[theme.title, !isHoursSelected ? theme.selected : null]}>{formatNumber(minute)}</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={theme.panel}>
+                    <CircuralTimeSelector setHour={setHour} setMinute={setMinute} isHoursSelected={isHoursSelected} />
+                </View>
             </View>
-
-
-            <CircuralTimeSelector setHour={setHour} setMinute={setMinute} />
 
             {/* <Text style={theme.text}>Add alarm at 00:00 AM</Text> */}
 
@@ -48,7 +50,7 @@ export default AlarmCreator
 
 const theme = StyleSheet.create({
     container: { flex: 1, backgroundColor: '#f0f2f5', justifyContent: 'center', alignItems: 'center' },
-    panel: { flex: 1, flexDirection: 'row' },
+    panel: { flex: 1, backgroundColor: 'blue' },
     title: { fontSize: 80, textAlign: 'center' },
     selected: { color: '#2673d0' },
     text: { fontSize: 16, marginBottom: 50, textAlign: 'center' },
