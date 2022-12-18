@@ -21,7 +21,7 @@ export default DaySelector
 
 const theme = StyleSheet.create({
     container: { marginVertical: 10, marginHorizontal: 5, padding: 5 },
-    selected: { marginVertical: 10, marginHorizontal: 5, padding: 5, backgroundColor: 'black' },
+    selected: { marginVertical: 10, marginHorizontal: 5, padding: 5, backgroundColor: 'black', borderRadius: 10 },
     text: { color: '#000' },
     textSelected: { color: '#fff' },
     image: { width: 20, height: 20 }
