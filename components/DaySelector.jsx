@@ -12,7 +12,7 @@ const DaySelector = ({ id, name, selectedArr, selectDaySelector, removeDaySelect
 
     return (
         <TouchableOpacity style={selected ? theme.selected : theme.container} onPress={() => select()}>
-            <Text style={selected ? theme.textSelected : theme.text}>{name} </Text>
+            <Text style={selected ? theme.textSelected : theme.text}>{name}</Text>
         </TouchableOpacity>
     )
 }
@@ -20,8 +20,8 @@ const DaySelector = ({ id, name, selectedArr, selectDaySelector, removeDaySelect
 export default DaySelector
 
 const theme = StyleSheet.create({
-    container: { margin: 10 },
-    selected: { margin: 10, backgroundColor: 'black' },
+    container: { margin: 5, padding: 5 },
+    selected: { marginVertical: 10, marginHorizontal: 5, backgroundColor: 'black', padding: 5 },
     text: { color: '#000' },
     textSelected: { color: '#fff' },
     image: { width: 20, height: 20 }
