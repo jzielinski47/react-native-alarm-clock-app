@@ -12,7 +12,7 @@ const Main = ({ navigation }) => {
     if (!fontLoaded) { return null }
 
     return (
-        <TouchableNativeFeedback background={TouchableNativeFeedback.Ripple('rgba(0,255,255,1)', true)} onPress={() => navigation.navigate('list')}>
+        <TouchableNativeFeedback background={TouchableNativeFeedback.Ripple('rgba(0,0,0,1)', true)} onPress={() => navigation.navigate('list')}>
             <View style={theme.container}>
                 <Text style={[theme.lettermark, { top: 70 }]}>SQLITE APP</Text>
                 <Text style={[theme.lettermark, { bottom: 85 }]}>by Jakub Zielinski</Text>

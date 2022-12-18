@@ -20,8 +20,8 @@ const DaySelector = ({ id, name, selectedArr, selectDaySelector, removeDaySelect
 export default DaySelector
 
 const theme = StyleSheet.create({
-    container: { margin: 5, padding: 5 },
-    selected: { marginVertical: 10, marginHorizontal: 5, backgroundColor: 'black', padding: 5 },
+    container: { marginVertical: 10, marginHorizontal: 5, padding: 5 },
+    selected: { marginVertical: 10, marginHorizontal: 5, padding: 5, backgroundColor: 'black' },
     text: { color: '#000' },
     textSelected: { color: '#fff' },
     image: { width: 20, height: 20 }

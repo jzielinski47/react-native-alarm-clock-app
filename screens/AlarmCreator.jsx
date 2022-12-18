@@ -2,8 +2,12 @@ import { View, Text, StyleSheet, Dimensions, TouchableNativeFeedback } from 'rea
 import CustomSquareButton2 from '../components/buttons/CustomSquareButton2';
 import React from 'react'
 import { Database } from '../api/Database';
+import CircuralTimeSelector from '../components/CircuralTimeSelector';
 
 const AlarmCreator = ({ route, navigation }) => {
+
+    const [hour, setHour] = useState(0);
+    const [minute, setMinute] = useState(0);
 
     const addAlarm = () => {
         const newAlarm = { id: 0, hour: '00', minute: '00', active: false }
@@ -15,11 +19,9 @@ const AlarmCreator = ({ route, navigation }) => {
     return (
         <View style={theme.container}>
 
+            <CircuralTimeSelector />
 
-
-            <Text style={theme.text}>
-                Add alarm at 00:00 AM
-            </Text>
+            {/* <Text style={theme.text}>Add alarm at 00:00 AM</Text> */}
 
             <View style={theme.buttons} >
                 <CustomSquareButton2 title={"Cancel"} onPress={() => navigation.goBack()} btnstylesheet={{ backgroundColor: '#fafafa' }} textstylesheet={{ color: '#00000060' }} />
