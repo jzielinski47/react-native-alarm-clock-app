@@ -1,7 +1,7 @@
 import { View, Text, Switch, Image, StyleSheet, Animated, TouchableNativeFeedback, TouchableOpacity } from 'react-native'
 import { React, useState } from 'react'
 
-const AlarmClock = ({ id, hour, minute, active }) => {
+const AlarmClock = ({ id, hour, minute, active, remove }) => {
 
   const [isActive, setIsActive] = useState(false);
   const [expanded, setExpanded] = useState(false);
@@ -28,7 +28,9 @@ const AlarmClock = ({ id, hour, minute, active }) => {
         <Switch style={theme.switch} />
       </View>
       <View style={theme.section}>
-        <Image style={theme.image} source={require('../assets/remove-black.png')} />
+        <TouchableOpacity onPress={() => remove(id)} >
+          <Image style={theme.image} source={require('../assets/remove-black.png')} />
+        </TouchableOpacity>
         <TouchableOpacity onPress={() => toggle()} >
           <Image style={theme.image} source={require('../assets/remove-black.png')} />
         </TouchableOpacity>

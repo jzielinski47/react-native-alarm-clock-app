@@ -22,11 +22,16 @@ const List = ({ navigation }) => {
 
     useEffect(() => console.log(alarms), [alarms])
 
+    const deleteAlarm = (id) => {
+        setAlarms(() => alarms.filter(alarm => alarm.id !== id));
+        Database.remove(id);
+    };
+
     return (
         <View style={theme.container}>
             <ScrollView style={{ flexGrow: 1, width: '100%', height: '100%' }}>
 
-                <AlarmClocksList alarms={alarms} />
+                <AlarmClocksList alarms={alarms} remove={deleteAlarm} />
 
             </ScrollView>
             <View style={theme.button} >
