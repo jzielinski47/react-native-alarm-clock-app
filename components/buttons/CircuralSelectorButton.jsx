@@ -12,5 +12,5 @@ const CircuralSelectorButton = ({ name, onPress, styles }) => {
 export default CircuralSelectorButton
 
 const theme = StyleSheet.create({
-    container: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#303030', borderRadius: 250, width: 40, height: 40 },
+    container: { flex: 1, justifyContent: 'center', alignItems: 'center', borderRadius: 250 },
 })

@@ -12,7 +12,7 @@ const AlarmCreator = ({ route, navigation }) => {
     const [isHoursSelected, setIsHoursSelected] = useState(true)
 
     const addAlarm = () => {
-        const newAlarm = { id: 0, hour: '00', minute: '00', active: false }
+        const newAlarm = { id: 0, hour: hour, minute: minute, active: false }
         navigation.goBack();
         Database.add(newAlarm.hour, newAlarm.minute, newAlarm.active ? 1 : 0)
         console.log(`added a new alarm at ${newAlarm.hour}:${newAlarm.minute}`)
@@ -22,7 +22,7 @@ const AlarmCreator = ({ route, navigation }) => {
         <View style={theme.container}>
 
             <View style={{ flex: 1, flexDirection: 'column' }}>
-                <View style={[theme.panel, { flexDirection: 'row', backgroundColor: 'red' }]}>
+                <View style={{ flex: 1, flexDirection: 'row', marginTop: 20 }}>
                     <TouchableOpacity onPress={() => setIsHoursSelected(true)}>
                         <Text style={[theme.title, isHoursSelected ? theme.selected : null]}>{formatNumber(hour)}</Text>
                     </TouchableOpacity>
@@ -31,7 +31,7 @@ const AlarmCreator = ({ route, navigation }) => {
                         <Text style={[theme.title, !isHoursSelected ? theme.selected : null]}>{formatNumber(minute)}</Text>
                     </TouchableOpacity>
                 </View>
-                <View style={theme.panel}>
+                <View style={{ flex: 6, position: 'relative', margin: 20 }}>
                     <CircuralTimeSelector setHour={setHour} setMinute={setMinute} isHoursSelected={isHoursSelected} />
                 </View>
             </View>
@@ -50,7 +50,7 @@ export default AlarmCreator
 
 const theme = StyleSheet.create({
     container: { flex: 1, backgroundColor: '#f0f2f5', justifyContent: 'center', alignItems: 'center' },
-    panel: { flex: 1, backgroundColor: 'blue' },
+    panel: {},
     title: { fontSize: 80, textAlign: 'center' },
     selected: { color: '#2673d0' },
     text: { fontSize: 16, marginBottom: 50, textAlign: 'center' },
