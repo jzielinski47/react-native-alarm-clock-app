@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { StyleSheet, Text, View, StatusBar, useColorScheme } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, useColorScheme, LogBox } from 'react-native';
 
 import Main from './screens/Main';
 import List from './screens/List';
 import AlarmCreator from './screens/AlarmCreator';
 
 const Stack = createNativeStackNavigator();
+// LogBox.ignoreAllLogs();
 
 const App = () => {
 

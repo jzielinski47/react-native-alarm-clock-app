@@ -9,11 +9,10 @@ const scale = 1.5
 
 const Main = ({ navigation }) => {
 
-    useEffect(() => Database.createTable(), [])
+    useEffect(() => { Database.createTable(); console.log('created database') }, [])
 
     const [fontLoaded] = useFonts({ opensansRegular: require('../assets/fonts/OpenSans-Regular.ttf'), opensansBold: require('../assets/fonts/OpenSans-Bold.ttf'), })
     if (!fontLoaded) { return null }
-
 
     return (
 
