@@ -71,7 +71,7 @@ const AlarmClock = ({ id, hour, minute, active, remove }) => {
 export default AlarmClock
 
 const theme = StyleSheet.create({
-  container: { flex: 1, flexDirection: 'column', marginHorziontal: 5, paddingHorizontal: 10, marginBottom: 5, paddingBottom: 10, padding: 5, borderBottomColor: '#e8e8e8', borderBottomWidth: 2, backgroundColor: '#fafafa', borderRadius: 10 },
+  container: { flex: 1, flexDirection: 'column', paddingHorizontal: 20, marginBottom: 5, paddingBottom: 10, padding: 5, borderBottomColor: '#e8e8e8', borderBottomWidth: 2, backgroundColor: '#fafafa', borderRadius: 10 },
   section: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginVertical: 2 },
   title: { fontSize: 32, textAlign: 'center' },
   image: { width: 20, height: 20 }
