@@ -21,6 +21,7 @@ const AlarmClock = ({ id, hour, minute, active, remove }) => {
   const [currentMinute, setCurrentMinute] = useState(new Date().getMinutes())
 
   const [sound, setSound] = useState()
+  let audioPlaying = false
 
   const selectDaySelector = (id, name) => {
     setSelectedDays(prevState => [...prevState, { id: id, name: name }])
@@ -43,7 +44,7 @@ const AlarmClock = ({ id, hour, minute, active, remove }) => {
     }, 1000)
   }, [])
 
-  useEffect(() => { Vibration.cancel() }, [currentMinute])
+  useEffect(() => { Vibration.cancel(); stopSound(); }, [currentMinute])
 
   useEffect(() => {
     clearInterval(listen)
@@ -63,7 +64,7 @@ const AlarmClock = ({ id, hour, minute, active, remove }) => {
             Vibration.vibrate(pattern, true)
           }
 
-          if (isMusic) {
+          if (isMusic && !audioPlaying) {
             playSound()
           }
 
@@ -98,18 +99,21 @@ const AlarmClock = ({ id, hour, minute, active, remove }) => {
   }
 
   const playSound = async () => {
-    console.log('Loading Sound');
-    const { sound } = await Audio.Sound.createAsync(require('../assets/wolf.mp3'));
-    setSound(sound);
+    if (!audioPlaying) {
+      audioPlaying = true
+      console.log('Loading Sound');
+      const { sound } = await Audio.Sound.createAsync(require('../assets/wolf.mp3'));
+      setSound(sound);
 
-    console.log('Playing Sound');
-    await sound.playAsync();
+      console.log('Playing Sound');
+      await sound.playAsync();
+    }
   }
 
   const stopSound = async () => { await sound.pauseAsync(); setSound(undefined); }
 
-  const toggleVibration = () => { Vibration.cancel(); setIsVibration(!isVibration) }
-  const toggleMusic = () => { Vibration.cancel(); setIsMusic(!isMusic) }
+  const toggleVibration = () => { Vibration.cancel(); stopSound(); setIsVibration(!isVibration) }
+  const toggleMusic = () => { Vibration.cancel(); stopSound(); setIsMusic(!isMusic) }
 
   return (
     <Animated.View style={[theme.container, { height: expansionHeight, backgroundColor: colors.panelw }]}>
