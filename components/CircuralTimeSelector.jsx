@@ -8,7 +8,7 @@ const CircuralTimeSelector = ({ setHour, setMinute, isHoursSelected }) => {
     const hours = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     const hoursAdditional = [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 0]
 
-    const minutes = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55]
+    const minutes = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 0]
     const conv = 2 * Math.PI / hours.length
     const ray = 130
 

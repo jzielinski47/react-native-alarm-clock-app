@@ -2,10 +2,12 @@ import { View, Text, Switch, Image, StyleSheet, Animated, TouchableNativeFeedbac
 import { React, useState, useEffect, useRef } from 'react'
 import { formatNumber } from '../api/Utils';
 import DaySelector from './DaySelector';
+import { colors } from '../api/ColorPallete';
+import { Audio } from 'expo-av';
 
 const AlarmClock = ({ id, hour, minute, active, remove }) => {
 
-  const [isActive, setIsActive] = useState(false);
+  const [isVibration, setIsVibration] = useState(false);
   const [isMusic, setIsMusic] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -15,7 +17,10 @@ const AlarmClock = ({ id, hour, minute, active, remove }) => {
   const [days, setDays] = useState([{ id: 0, name: 'Monday' }, { id: 1, name: 'Tuesday' }, { id: 2, name: 'Wednesday' }, { id: 3, name: 'Thursday' }, { id: 4, name: 'Friday' }, { id: 5, name: 'Saturday' }, { id: 6, name: 'Sunday' }]);
   const [selectedDays, setSelectedDays] = useState([]);
 
-  const [isWatching, setIsWatching] = useState(false)
+  const [currentHour, setCurrentHour] = useState(new Date().getHours())
+  const [currentMinute, setCurrentMinute] = useState(new Date().getMinutes())
+
+  const [sound, setSound] = useState()
 
   const selectDaySelector = (id, name) => {
     setSelectedDays(prevState => [...prevState, { id: id, name: name }])
@@ -27,25 +32,49 @@ const AlarmClock = ({ id, hour, minute, active, remove }) => {
 
   useEffect(() => console.log(selectedDays), [selectedDays])
 
+  let listen
+  let intervalWorking = false
+
   useEffect(() => {
+    setInterval(() => {
+      const date = new Date();
+      setCurrentHour(date.getHours())
+      setCurrentMinute(date.getMinutes())
+    }, 1000)
+  }, [])
 
-    let watch;
+  useEffect(() => { Vibration.cancel() }, [currentMinute])
 
-    if (isActive && !isWatching) {
-      setIsWatching(true);
-      watch = setInterval(() => {
-        const date = new Date()
-        if (date.getHours() == hour && date.getMinutes() == minute) {
-          isActive ? Vibration.vibrate() : clearInterval(watch)
+  useEffect(() => {
+    clearInterval(listen)
+    if (!intervalWorking) {
+      listen = setInterval(() => {
+        intervalWorking = true
+        const date = new Date();
+        setCurrentHour(date.getHours())
+        setCurrentMinute(date.getMinutes())
+
+        if (currentHour == hour && currentMinute == minute) {
+          intervalWorking = false
+          clearInterval(listen)
+
+          if (isVibration) {
+            const pattern = [0.5 * 1000, 1 * 1000, 0.5 * 1000]
+            Vibration.vibrate(pattern, true)
+          }
+
+          if (isMusic) {
+            playSound()
+          }
+
         }
-      }, 1000)
 
-    } else {
-      setIsWatching(false)
-      clearInterval(watch)
+      }, 200)
     }
 
-  }, [isActive])
+  }, [isMusic, isVibration]);
+
+  // useEffect(() => !isActive && ring ? clearInterval(ring) : null, [isActive])
 
   const toggle = () => !isExpanded ? expand() : roll();
 
@@ -68,15 +97,26 @@ const AlarmClock = ({ id, hour, minute, active, remove }) => {
     setTimeout(() => setIsExpanded(!isExpanded), 500)
   }
 
-  const toggleSwitch = () => setIsActive(!isActive)
-  const toggleMusic = () => setIsMusic(!isMusic)
+  const playSound = async () => {
+    console.log('Loading Sound');
+    const { sound } = await Audio.Sound.createAsync(require('../assets/wolf.mp3'));
+    setSound(sound);
+
+    console.log('Playing Sound');
+    await sound.playAsync();
+  }
+
+  const stopSound = async () => { await sound.pauseAsync(); setSound(undefined); }
+
+  const toggleVibration = () => { Vibration.cancel(); setIsVibration(!isVibration) }
+  const toggleMusic = () => { Vibration.cancel(); setIsMusic(!isMusic) }
 
   return (
-    <Animated.View style={[theme.container, { height: expansionHeight }]}>
+    <Animated.View style={[theme.container, { height: expansionHeight, backgroundColor: colors.panelw }]}>
       <View style={theme.section}>
         <Text style={theme.title}>{`${formatNumber(hour)}:${formatNumber(minute)}`}</Text>
-        <Switch style={theme.switch} trackColor={{ false: "#7d7d7d", true: "#7c7c7c" }} thumbColor={isMusic ? "#303030" : "#f4f3f4"} onValueChange={toggleMusic} value={isMusic} />
-        <Switch style={theme.switch} trackColor={{ false: "#7d7d7d", true: "#7c7c7c" }} thumbColor={isActive ? "#303030" : "#f4f3f4"} onValueChange={toggleSwitch} value={isActive} />
+        <Switch style={theme.switch} trackColor={{ false: colors.black60, true: colors.black60 }} thumbColor={isMusic ? "#303030" : "#f4f3f4"} onValueChange={toggleMusic} value={isMusic} />
+        <Switch style={theme.switch} trackColor={{ false: colors.black60, true: colors.black60 }} thumbColor={isVibration ? "#303030" : "#f4f3f4"} onValueChange={toggleVibration} value={isVibration} />
       </View>
       <View style={theme.section}>
         <TouchableOpacity onPress={() => remove(id)} >
@@ -84,7 +124,7 @@ const AlarmClock = ({ id, hour, minute, active, remove }) => {
         </TouchableOpacity>
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
           {isMusic ? <Image style={{ width: 16, height: 16, marginHorizontal: 5 }} source={{ uri: 'https://static.vecteezy.com/system/resources/previews/001/200/758/original/music-note-png.png' }} /> : null}
-          {isActive ? <Image style={{ width: 20, height: 20, marginHorizontal: 5 }} source={{ uri: 'https://cdn-icons-png.flaticon.com/512/733/733474.png' }} /> : null}
+          {isVibration ? <Image style={{ width: 20, height: 20, marginHorizontal: 5 }} source={{ uri: 'https://cdn-icons-png.flaticon.com/512/733/733474.png' }} /> : null}
         </View>
         <TouchableOpacity onPress={() => toggle()} >
           <Image style={theme.image} source={isExpanded ? require('../assets/expand-button-up.png') : require('../assets/expand-button-down.png')} />
@@ -100,7 +140,7 @@ const AlarmClock = ({ id, hour, minute, active, remove }) => {
 export default AlarmClock
 
 const theme = StyleSheet.create({
-  container: { flex: 1, flexDirection: 'column', paddingHorizontal: 20, marginBottom: 5, paddingBottom: 10, padding: 5, borderBottomColor: '#e8e8e8', borderBottomWidth: 2, backgroundColor: '#fafafa', borderRadius: 10 },
+  container: { flex: 1, flexDirection: 'column', paddingHorizontal: 20, marginBottom: 5, paddingBottom: 10, padding: 5, borderBottomColor: '#e8e8e8', borderBottomWidth: 2, borderRadius: 10 },
   section: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginVertical: 2 },
   title: { fontSize: 32, textAlign: 'center' },
   image: { width: 20, height: 20 }
