@@ -1,9 +1,9 @@
 import { View, Text, StyleSheet, Dimensions, TouchableNativeFeedback, TouchableOpacity } from 'react-native'
 import CustomSquareButton2 from '../components/buttons/CustomSquareButton2';
 import React, { useState, useEffect } from 'react'
-import { Database } from '../api/Database';
+import { Database } from '../../api/Database';
 import CircuralTimeSelector from '../components/CircuralTimeSelector';
-import { formatNumber } from '../api/Utils';
+import { formatNumber } from '../../api/Utils';
 
 const AlarmCreator = ({ route, navigation }) => {
 

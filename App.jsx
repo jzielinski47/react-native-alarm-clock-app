@@ -3,9 +3,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StyleSheet, Text, View, StatusBar, useColorScheme, LogBox } from 'react-native';
 
-import Main from './screens/Main';
-import List from './screens/List';
-import AlarmCreator from './screens/AlarmCreator';
+import Main from './src/screens/Main';
+import List from './src/screens/List';
+import AlarmCreator from './src/screens/AlarmCreator';
 
 import { Database } from "./api/Database";
 
