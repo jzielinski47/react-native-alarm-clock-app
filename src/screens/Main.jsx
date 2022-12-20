@@ -8,7 +8,7 @@ const scale = 1.5
 
 const Main = ({ navigation }) => {
 
-    const [fontLoaded] = useFonts({ opensansRegular: require('../assets/fonts/OpenSans-Regular.ttf'), opensansBold: require('../assets/fonts/OpenSans-Bold.ttf'), })
+    const [fontLoaded] = useFonts({ opensansRegular: require('../../assets/fonts/OpenSans-Regular.ttf'), opensansBold: require('../../assets/fonts/OpenSans-Bold.ttf'), })
     if (!fontLoaded) { return null }
 
     return (
@@ -18,7 +18,7 @@ const Main = ({ navigation }) => {
                 <Text style={[theme.lettermark, { bottom: 85 }]}>by Jakub Zielinski</Text>
 
                 <View style={theme.content} >
-                    <Image style={theme.illustration} source={require('../assets/illustration.png')} />
+                    <Image style={theme.illustration} source={require('../../assets/illustration.png')} />
                     <Text style={[theme.title, { fontFamily: 'opensansBold' }]}>Alarm Clock App</Text>
                     <Text style={[theme.text, { fontFamily: 'opensansRegular' }]}>manage your time with alarm clocks</Text>
                     <CustomRoundedButton title={'Get started'} onPress={() => navigation.navigate('list')} />

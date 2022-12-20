@@ -102,7 +102,7 @@ const AlarmClock = ({ id, hour, minute, active, remove }) => {
     if (!audioPlaying) {
       audioPlaying = true
       console.log('Loading Sound');
-      const { sound } = await Audio.Sound.createAsync(require('../assets/wolf.mp3'));
+      const { sound } = await Audio.Sound.createAsync(require('../../assets/wolf.mp3'));
       setSound(sound);
 
       console.log('Playing Sound');
@@ -124,14 +124,14 @@ const AlarmClock = ({ id, hour, minute, active, remove }) => {
       </View>
       <View style={theme.section}>
         <TouchableOpacity onPress={() => remove(id)} >
-          <Image style={theme.image} source={require('../assets/remove-black.png')} />
+          <Image style={theme.image} source={require('../../assets/remove-black.png')} />
         </TouchableOpacity>
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
           {isMusic ? <Image style={{ width: 16, height: 16, marginHorizontal: 5 }} source={{ uri: 'https://static.vecteezy.com/system/resources/previews/001/200/758/original/music-note-png.png' }} /> : null}
           {isVibration ? <Image style={{ width: 20, height: 20, marginHorizontal: 5 }} source={{ uri: 'https://cdn-icons-png.flaticon.com/512/733/733474.png' }} /> : null}
         </View>
         <TouchableOpacity onPress={() => toggle()} >
-          <Image style={theme.image} source={isExpanded ? require('../assets/expand-button-up.png') : require('../assets/expand-button-down.png')} />
+          <Image style={theme.image} source={isExpanded ? require('../../assets/expand-button-up.png') : require('../../assets/expand-button-down.png')} />
         </TouchableOpacity>
       </View>
       <View style={theme.section}>

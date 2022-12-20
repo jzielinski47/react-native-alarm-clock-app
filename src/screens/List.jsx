@@ -1,6 +1,6 @@
 import { View, Text, ScrollView, StyleSheet, Button, SafeAreaView, Dimensions } from 'react-native'
 import CustomSquareButton from '../components/buttons/CustomSquareButton';
-import AlarmClocksList from '../../components/AlarmClocksList';
+import AlarmClocksList from '../components/AlarmClocksList';
 import { React, useEffect, useState } from 'react'
 import { Database } from "../../api/Database";
 
@@ -20,7 +20,7 @@ const List = ({ navigation }) => {
         });
     }, []);
 
-    
+
 
     useEffect(() => console.log(alarms), [alarms])
 
