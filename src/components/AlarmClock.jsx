@@ -1,8 +1,8 @@
 import { View, Text, Switch, Image, StyleSheet, Animated, TouchableNativeFeedback, TouchableOpacity, Dimensions, Vibration } from 'react-native'
 import { React, useState, useEffect, useRef } from 'react'
-import { formatNumber } from '../api/Utils';
+import { formatNumber } from '../../api/Utils';
 import DaySelector from './DaySelector';
-import { colors } from '../api/ColorPallete';
+import { colors } from '../../api/ColorPallete';
 import { Audio } from 'expo-av';
 
 const AlarmClock = ({ id, hour, minute, active, remove }) => {
