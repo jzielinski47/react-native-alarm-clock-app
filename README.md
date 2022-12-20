@@ -1,3 +1,3 @@
-# react-native-alarm-clock-app
+# React Native Alarm Clock App
 
-**Alarm Clock App** manages handles alarm clock management and MySql database connection. 
+**Alarm Clock App** is a mobile app designed to manage the alarm clocks. 
