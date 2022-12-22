@@ -11,4 +11,8 @@ Each alarm clock has its own timer that activates it whenever the time is in syn
 
 ## Project Structure
 
+```jsx
+  App.jsx
+```
+
 Jakub Zieliński
