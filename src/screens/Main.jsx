@@ -23,6 +23,7 @@ const Main = ({ navigation }) => {
                     <Text style={[theme.text, { fontFamily: 'opensansRegular' }]}>manage your time with alarm clocks</Text>
                     <CustomRoundedButton title={'Get started'} onPress={() => navigation.navigate('list')} />
                 </View>
+
                 <StatusBar style="auto" />
             </View>
         </TouchableNativeFeedback>
