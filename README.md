@@ -15,4 +15,4 @@ This application is designed to provide users with a reliable and efficient wake
   App.jsx
 ```
 
-Jakub Zieliński
+Written and designed by Jakub Zieliński
