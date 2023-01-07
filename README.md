@@ -1,6 +1,6 @@
 # React Native Alarm Clock App
 
-This application is designed to provide users with a reliable and efficient wake-up experience. It enables the user to set multiple alarms for different times of the day. It implements expo-sqlite database technology, vibrations and audio. Additionally, the app provides an easy-to-navigate user interface and intuitive controls, making it an ideal choice for users who need a reliable and efficient alarm clock solution.
+This application is designed to provide users with a reliable and efficient wake-up experience. It enables the user to set multiple alarms for different times of the day. The app also offers a feature, which allows users to choose between vibrations and audio or play both at once when the time comes. Additionally, the app provides an easy-to-navigate user interface and intuitive controls, making it an ideal choice for users who need a reliable and efficient alarm clock solution.
 
 ## Design
 <div>
