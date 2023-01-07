@@ -9,7 +9,7 @@ This application is designed to provide users with a reliable and efficient wake
 <img align=top src="https://raw.githubusercontent.com/jzielinski47/react-native-alarm-clock-app/master/assets/screenshots/Screenshot_20221220-175301.jpg" width="240">
 <img align=top src="https://raw.githubusercontent.com/jzielinski47/react-native-alarm-clock-app/master/assets/screenshots/Screenshot_20221220-175323.jpg" width="240">
 </div>
-
+**Circular time selector**
 A circular time selector is a type of user interface element that allows a user to select a time from a circular dial. It is a more intuitive and user-friendly option than a keyboard for setting a time. By using a circular time selector, users can quickly and easily adjust the time without having to manually type in a value. Additionally, the circular interface allows for more precise adjustments to the time, as the user can easily adjust the time in smaller increments. The visual representation of the time also makes it easier for users to understand the format of the time they are setting.
 
 ## Project Structure
