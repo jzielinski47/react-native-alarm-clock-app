@@ -18,5 +18,9 @@ A circular time selector is a type of user interface element that allows a user 
 ```jsx
   App.jsx
 ```
+## Behind the app 
+The following project was developed as a part of my learning journey at **Zespół Szkół Łączności in Krakow**.
 
-Written and designed by Jakub Zieliński
+The core concept and the idea for the project belongs to my beloved teacher: **Dariusz Stefańczyk**
+
+The project itself was developed and designed by me, **Jakub Zieliński**
